@@ -1,0 +1,24 @@
+{
+  "name": "获取指定网站cookie-chrome扩展程序",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "获取指定网站cookie-chrome扩展程序",
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "css": ["css/css.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "permissions": ["scripting", "cookies", "storage"],
+  "host_permissions": ["<all_urls>"]
+}

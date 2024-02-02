@@ -11,10 +11,10 @@ function initCustomPanel() {
   panel.className = "chrome-plugin-demo-panel";
   panel.innerHTML = `
 		<h2> 演示区：</h2>
-    <div>你也可以删除这段代码注入，在自己的网站中调用：javascript:window.postMessage({ cmd: "invoke", code: "getBuffCookie" }, "*")</div>
-    <div>调用完本段代码之后，buff的cookie便会存储到localStore中</div>
+    <div>你也可以删除这段代码注入，在自己的网站中调用：javascript:window.postMessage({ cmd: "invoke", code: "getTldwCookie" }, "*")</div>
+    <div>调用完本段代码之后，tldw的cookie便会存储到localStore中</div>
 		<div class="btn-area" style="margin-bottom:100px">
-			<a id="btn_get_buff_cookie" href='javascript:window.postMessage({ cmd: "invoke", code: "getBuffCookie" }, "*")'>点我获取BuffCookie</a><br>
+			<a id="btn_get_tldw_cookie" href='javascript:window.postMessage({ cmd: "invoke", code: "getTldwCookie" }, "*")'>点我获取TldwCookie</a><br>
 			<a id="btn_get_steam_cookie" href='javascript:window.postMessage({ cmd: "invoke", code: "getSteamCookie" }, "*")'>点我获取SteamCookie</a><br>
 		</div>
  
@@ -24,14 +24,14 @@ function initCustomPanel() {
 }
 
 window.addEventListener("message", (event) => {
-  if (event.data.code == "getBuffCookie") {
+  if (event.data.code == "getTldwCookie") {
     chrome.runtime.sendMessage(
       {
         action: "getCookie",
-        domain: "buff.163.com",
+        domain: "172.30.6.14",
       },
       (res) => {
-        localStorage.setItem("buff_cookie", JSON.stringify(res));
+        localStorage.setItem("tldw_cookie", JSON.stringify(res));
       }
     );
   }
